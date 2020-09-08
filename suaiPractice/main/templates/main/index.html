@@ -1,0 +1,72 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=4e665659-260f-4331-aeb8-95796408f5ce&lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+ymaps.ready(init);
+
+function init() {
+
+    var myMap = new ymaps.Map('map', {
+            center: [59.939095, 30.315868],
+            zoom: 11,
+            controls: ['zoomControl']
+        }, {
+
+            minZoom: 11,
+            maxZoom: 11
+        });
+
+
+    var tileUrlTemplate = '/suaiPractice/main/static/%z/tile-test-%y-%x',
+
+
+        imgUrlTemplate = '/suaiPractice/main/static/%z/tile-%y-%x.png',
+
+        baseLayer = new ymaps.Layer(
+'http://tile.openstreetmap.org/%z/%x/%y.png', {
+    projection: ymaps.projection.sphericalMercator
+});
+        imgLayer = new ymaps.Layer(imgUrlTemplate, {
+            tileTransparent: true,
+             brightness:1});
+      //  hotspotLayer = new ymaps.hotspot.Layer(objSource, {cursor: 'help'});
+
+    // Добавляем слои на карту.
+  //  myMap.layers.add(hotspotLayer);
+  // myMap.layers.add(baseLayer);
+    myMap.layers.add(imgLayer);
+}
+    </script>
+</head>
+
+<body>
+    <div id="map" style="width: 1000px; height: 800px"></div>
+    <img src="https://b.tile.openstreetmap.org/11/1196/597.png">
+    <p> width {{ width }} </p>
+  <p> hight  {{ hight }} </p>
+  <p> dxt      {{ dxt }} </p>
+ <p> dxy   {{ dxy }} </p>
+  <p> dx  {{ dx }} </p>
+  <p> dy  {{ dy }} </p>
+  <p> iteri  {{ iteri }} </p>
+  <p> pop    {{ pop }} </p>
+    <p> curcs    {{ curcs }} </p>
+    <p> prextileX    {{ prextileX }} </p>
+    {% for y in ytileList %}
+  <p> ytileList   {{ y }}  </p>
+{% endfor %}
+        {% for x in xtileList %}
+  <p> xtileList   {{ x }}  </p>
+{% endfor %}
+    {% for y in ytileList2 %}
+  <p> ytileList2   {{ y }}  </p>
+{% endfor %}
+        {% for x in xtileList2 %}
+  <p> xtileList2   {{ x }}  </p>
+{% endfor %}
+ <p> xtiles  {{ xtiles }} </p>
+  <p> ytiles  {{ ytiles }} </p>
+</body>
+
+</html>
